@@ -13,6 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./my_dump.sql:/docker-entrypoint-initdb.d/init.sql
 
   app:
     build: .
@@ -25,7 +26,6 @@ services:
       DB_USER: beauty_user
       DB_PASSWORD: beauty_password
       DB_NAME: beauty_salon
-
       JWT_SECRET: super_secret_jwt_key
       NODE_ENV: production
     ports:
